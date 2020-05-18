@@ -1,5 +1,4 @@
 <?php
-require_once 'baglan.php';
 $sorgu = $db->prepare('SELECT * FROM users');
 $sorgu->execute();
 $kullanicilar = $sorgu->fetchALL(PDO::FETCH_ASSOC);
@@ -15,6 +14,7 @@ $kullanicilar = $sorgu->fetchALL(PDO::FETCH_ASSOC);
                 <th scope="col">Mail</th>
                 <th scope="col">Yaş</th>
                 <th scope="col">Zaman</th>
+                <th scope="col">Düzenle / Sil</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +23,11 @@ $kullanicilar = $sorgu->fetchALL(PDO::FETCH_ASSOC);
                     <?php foreach ($kullanici as $bilgi) : ?>
                         <td><?php echo $bilgi ?></td>
                     <?php endforeach; ?>
+                    <td>
+                        <a type="button" class="btn btn-success" href='?sayfa=duzenle&id=<?=$kullanici['id']?>'>Düzenle</a>
+                        <a onclick="return confirm('Silmek İstediğinize Emin Misiniz?')" type="button" class="btn btn-danger" href='?sayfa=sil&id=<?=$kullanici['id']?>'>Sil</a>
+                    </td>
+
                 </tr>
             <?php endforeach; ?>
         </tbody>

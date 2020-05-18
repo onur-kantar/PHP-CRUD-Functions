@@ -11,13 +11,21 @@
 <body>
 
     <?php
+    require_once 'baglan.php';
+
     if (!isset($_GET['sayfa'])) {
         $_GET['sayfa'] = 'index';
     }
     switch ($_GET['sayfa']) {
         case 'index':
-            require_once 'form.php';
-            require_once 'liste.php';
+            require_once 'ekle.php';
+            require_once 'listele.php';
+            break;
+        case 'duzenle':
+            require_once 'duzenle.php';
+            break;
+        case 'sil':
+            require_once 'sil.php';
             break;
     }
     ?>
